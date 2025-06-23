@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JGS Social Media AI Content Planner 25.1V</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+       <div class="background-overlay"></div>
+    <!-- Loading Screen -->
+    <div id="loadingScreen" class="loading-screen">
+        <div class="loading-content">
+            <div class="loading-spinner"></div>
+            <div class="loading-text">
+                <span class="connecting-text">Connecting Server</span>
+                <span class="dots">...</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Dashboard -->
+ <div class="main-dashboard" id="mainDashboard">
+        <!-- අලුතින් එකතු කළ යුතු Top Navigation Bar එක -->
+        <header class="top-navbar">
+            <div class="app-branding">
+                <h1 class="app-name" data-i18n="appName"><i class="fa-brands fa-react"></i> JGS AI STUDIO 2025 v2.5</h1>
+                <span class="app-version">Advance Analyst and Conversational Assistant</span>
+            </div>
+            <div class="navbar-controls">
+                <div id="registrationContainer">
+                    <button id="registerBtn" class="register-btn" onclick="openRegistrationModal()">
+                        <i class="fas fa-user-plus"></i>
+                        <span data-i18n="register">Register</span>
+                    </button>
+                    <div id="registeredStatus" class="registered-status hidden">
+                        <i class="fas fa-check-circle"></i>
+                        <span data-i18n="registered">Registered</span>
+                    </div>
+                </div>
+                <div class="language-selector">
+                     <select id="languageSelect">
+                        <option value="english">English</option>
+                        <option value="sinhala">සිංහල</option>
+                        <option value="tamil">தமிழ்</option>
+                    </select>
+                </div>
+                <div class="theme-toggle">
+                    <label class="toggle-switch">
+                         <input type="checkbox" id="themeToggle">
+                        <span class="slider">
+                            <i class="fas fa-sun"></i>
+                            <i class="fas fa-moon"></i>
+                        </span>
+                    </label>
+                </div>
+            </div>
+        </header>
+
+        <!-- Right Panel -->
+        <div class="right-panel">
+            <!-- Welcome Section -->
+            <div id="welcomeSection" class="welcome-section">
+                <div class="welcome-icon">
+                     <i class="fa-solid fa-wand-magic-sparkles"></i>
+                </div>
+                <h2 class="welcome-text animated-text">Welcome To JGS AI Studio 2025</h2>
+                
+                <!-- Feature Cards -->
+                <div class="feature-cards">
+                    <div class="feature-card" id="youtubeContentCard">
+                        <div class="card-header">
+                            <i class="fab fa-youtube"></i>
+                            <h3>YouTube Content Planner</h3>
+                        </div>
+                        <p>Create comprehensive YouTube content strategies with AI-powered insights and optimization recommendations.</p>
+                    </div>
+                    
+                    <div class="feature-card" id="youtubeThumbnailCard">
+                        <div class="card-header">
+                            <i class="fas fa-image"></i>
+                            <h3>YouTube Thumbnail Analyser</h3>
+                        </div>
+                        <p>Analyze thumbnail effectiveness and get recommendations for better click-through rates.</p>
+                    </div>
+                    
+                    <div class="feature-card" id="socialMediaCard">
+                        <div class="card-header">
+                            <i class="fas fa-share-alt"></i>
+                            <h3>Social Media Content Planner</h3>
+                        </div>
+                        <p>Plan and optimize content across multiple social media platforms with AI assistance.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- YouTube Content Planner -->
+            <div id="youtubeContentPlanner" class="content-planner hidden">
+                <div class="planner-header">
+                    <button class="back-btn" onclick="showWelcomeSection()">
+                        <i class="fas fa-arrow-left"></i>
+                    </button>
+                    <h2>YouTube Content Planner</h2>
+                </div>
+                
+                <div class="planner-content">
+                    <div class="input-group">
+                        <label>Video Category</label>
+                        <select id="categorySelect">
+                            <option value="">Select Category</option>
+                            <option value="gaming">Gaming</option>
+                            <option value="education">Education</option>
+                            <option value="entertainment">Entertainment</option>
+                            <option value="technology">Technology</option>
+                            <option value="lifestyle">Lifestyle</option>
+                            <option value="music">Music</option>
+                            <option value="sports">Sports</option>
+                            <option value="food">Food & Cooking</option>
+                            <option value="travel">Travel</option>
+                            <option value="custom">Custom Category</option>
+                        </select>
+                        <input type="text" id="customCategory" placeholder="Enter custom category" class="hidden">
+                    </div>
+
+                    <div class="input-group">
+                        <label>Content Prompt</label>
+                        <textarea id="contentPrompt" placeholder="Describe your video idea or topic..."></textarea>
+                    </div>
+
+                    <div class="tags-section">
+                        <div class="input-group">
+                            <label>Number of Tags</label>
+                            <input type="number" id="numTags" min="5" max="50" value="10">
+                        </div>
+                        <div class="input-group">
+                            <label>Number of Hashtags</label>
+                            <input type="number" id="numHashtags" min="5" max="30" value="15">
+                        </div>
+                    </div>
+
+                    <button id="generatePlanBtn" class="generate-btn">
+                        <i class="fas fa-magic"></i>
+                        <span>Generate Plan</span>
+                    </button>
+                </div>
+            </div>
+
+                         <!-- YouTube Thumbnail Analyzer -->
+            <div id="youtubeThumbnailAnalyzer" class="content-planner hidden">
+                <div class="planner-header">
+                    <button class="back-btn" onclick="showWelcomeSection()">
+                        <i class="fas fa-arrow-left"></i>
+                    </button>
+                    <h2>YouTube Thumbnail Analyzer</h2>
+                </div>
+                
+                <div class="planner-content">
+                    <div class="upload-section">
+                        <div class="upload-area" id="uploadArea">
+                            <div class="upload-prompt">
+                                <i class="fas fa-cloud-upload-alt"></i>
+                                <p>Drag & drop your thumbnail or click to upload</p>
+                            </div>
+                            <div class="upload-status"></div>
+                            <!-- මෙම input එක දැන් සැඟවී පවතින අතර, මකා දැමෙන්නේ නැත -->
+                            <input type="file" id="thumbnailUpload" accept="image/*" style="display: none;">
+                        </div>
+                    </div>
+
+                    <div class="input-group">
+                        <label>Analysis Prompt (Optional)</label>
+                        <textarea id="analysisPrompt" placeholder="What specific aspects would you like to analyze?"></textarea>
+                    </div>
+
+                    <button id="analyzeThumbnailBtn" class="generate-btn">
+                        <i class="fas fa-search"></i>
+                        <span>Analyze Thumbnail</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Social Media Content Planner -->
+            <div id="socialMediaPlanner" class="content-planner hidden">
+                <div class="planner-header">
+                    <button class="back-btn" onclick="showWelcomeSection()">
+                        <i class="fas fa-arrow-left"></i>
+                    </button>
+                    <h2>Social Media Content Planner</h2>
+                </div>
+                
+                <div class="planner-content">
+                    <div class="input-group">
+                        <label>Platform</label>
+                        <select id="platformSelect">
+                            <option value="">Select Platform</option>
+                            <option value="facebook"><i class="fab fa-facebook"></i> Facebook</option>
+                            <option value="tiktok"><i class="fab fa-tiktok"></i> TikTok</option>
+                            <option value="instagram"><i class="fab fa-instagram"></i> Instagram</option>
+                            <option value="twitter"><i class="fab fa-twitter"></i> Twitter</option>
+                            <option value="linkedin"><i class="fab fa-linkedin"></i> LinkedIn</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+
+                    <div class="input-group">
+                        <label>Content Type</label>
+                        <select id="contentTypeSelect">
+                            <option value="">Select Content Type</option>
+                            <option value="post">Regular Post</option>
+                            <option value="story">Story</option>
+                            <option value="reel">Reel/Short Video</option>
+                            <option value="live">Live Stream</option>
+                            <option value="poll">Poll/Survey</option>
+                        </select>
+                    </div>
+
+                    <div class="input-group">
+                        <label>Content Description</label>
+                        <textarea id="socialContentPrompt" placeholder="Describe your social media content idea..."></textarea>
+                    </div>
+
+                    <button id="generateSocialPlanBtn" class="generate-btn">
+                        <i class="fas fa-magic"></i>
+                        <span>Generate Social Plan</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- AI Output Section -->
+            <div id="aiOutputSection" class="ai-output-section hidden">
+                <div class="output-header">
+                    <button class="back-btn" onclick="showWelcomeSection()">
+                        <i class="fas fa-arrow-left"></i>
+                    </button>
+                    <h2>AI Generated Content</h2>
+                    <div class="output-actions">
+                        <button id="saveAsPdfBtn" class="action-btn">
+                            <i class="fas fa-file-pdf"></i>
+                            Save as PDF
+                        </button>
+                        <button id="copyOutputBtn" class="action-btn">
+                            <i class="fas fa-copy"></i>
+                            Copy All
+                        </button>
+                    </div>
+                </div>
+                <div id="aiOutput" class="ai-output">
+                    <div class="typing-indicator hidden">
+                        <div class="typing-dots">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- SEO Chart -->
+                <div id="seoChart" class="seo-chart hidden">
+                    <h3>SEO Analysis</h3>
+                    <div class="chart-container">
+                        <canvas id="seoCanvas" width="400" height="200"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Chat Section -->
+            <div id="chatSection" class="chat-section hidden">
+                <div class="chat-header">
+                    <button class="back-btn" onclick="showWelcomeSection()">
+                        <i class="fas fa-arrow-left"></i>
+                    </button>
+                    <h2>AI Chat Assistant</h2>
+                    <button id="voiceBtn" class="voice-btn">
+                        <i class="fas fa-microphone"></i>
+                    </button>
+                </div>
+                <div id="chatMessages" class="chat-messages"></div>
+            </div>
+
+            <!-- Chat Input -->
+            <div class="chat-input-section">
+                <div class="chat-input-container">
+                    <input type="text" id="chatInput" placeholder="Chat with AI...">
+                    <button id="sendChatBtn" class="send-btn">
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="footer-info">
+                <p>© 2025 SINHA AI. All Rights Reserved.|Desing By : JGS LANKA CO.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Registration Modal -->
+    <div id="registrationModal" class="modal hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Register Now</h2>
+                <button class="close-btn" onclick="closeRegistrationModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div id="verificationStep">
+                    <h1><i class="fa-solid fa-shield"></i></h1>
+                    <p>Enter Your Verification Code</p>
+                    <input type="text" id="verificationCode" placeholder="Enter code: GDF3456AF">
+                    <button id="verifyBtn" class="verify-btn">Verify</button>
+                </div>
+                <div id="registerStep" class="hidden">
+                    <h1><i class="fa-solid fa-circle-user"></i></h1>
+                    <p>Your registration is confirmed, please get the registration code and verify the account.</p>
+                    <button id="completeRegisterBtn" class="register-now-btn">
+                        Register Now
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Limitation Warning Modal -->
+    <div id="limitationModal" class="modal hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Daily Limit Reached</h2>
+                <button class="close-btn" onclick="closeLimitationModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>You have reached your daily usage limit. Please register to get unlimited access to all features.</p>
+                <button onclick="openRegistrationModal()" class="register-now-btn">
+                    Register Now
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
