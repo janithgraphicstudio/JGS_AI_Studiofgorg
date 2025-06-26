@@ -172,7 +172,7 @@ body {
 }
 
 .glass:hover {
-    border-color: rgba(102, 126, 234, 0.5);
+    border-color: rgba(11, 39, 160, 0.5);
     box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4), 0 0 20px rgba(102, 126, 234, 0.3);
     transform: translateY(-2px);
 }
@@ -910,7 +910,7 @@ input:checked + .slider::before {
 }
 
 .back-btn {
-    background: var(--glass-bg);
+    background: rgba(3, 30, 65, 0.425);
     backdrop-filter: blur(20px);
     border: 1px solid var(--glass-border);
     border-radius: 12px;
@@ -925,7 +925,7 @@ input:checked + .slider::before {
 }
 
 .back-btn:hover {
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(2, 22, 63, 0.349);
     transform: translateX(-3px) scale(1.05);
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
@@ -1079,13 +1079,13 @@ input:checked + .slider::before {
 }
 
 .action-btn:hover {
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(4, 17, 59, 0.486);
     transform: translateY(-2px);
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
 
 .ai-output {
-    background: var(--glass-bg);
+    background: rgba(3, 17, 56, 0.267);
     backdrop-filter: blur(30px);
     border: 1px solid var(--glass-border);
     border-radius: 20px;

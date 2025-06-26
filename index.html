@@ -26,7 +26,7 @@
         <div class="loading-content">
             <div class="loading-spinner"></div>
             <div class="loading-text">
-                <span class="connecting-text">Initializing JGS AI Studio</span>
+                <span class="connecting-text"><i class="fa-brands fa-react"></i> JGS AI Studio Connecting....</span>
             </div>
         </div>
     </div>
@@ -499,44 +499,11 @@
                 </div>
             </div>
             <div class="modal-body chat-modal-body">
-                <!-- Chat Explain Cards -->
-                <div class="explain-cards-section glass">
-                    <div class="explain-cards-header">
-                        <i class="fas fa-comments"></i>
-                        <h3>Quick Chat Templates</h3>
-                    </div>
-                    <div class="explain-cards-grid">
-                        <div class="explain-card" onclick="useChatTemplate('content')">
-                            <div class="explain-card-header">
-                                <i class="fas fa-pen-fancy"></i>
-                                <h4>Content Ideas</h4>
-                            </div>
-                            <p class="explain-card-description">Get creative content ideas for your niche with trending topics and angles.</p>
-                        </div>
-                        <div class="explain-card" onclick="useChatTemplate('growth')">
-                            <div class="explain-card-header">
-                                <i class="fas fa-chart-line"></i>
-                                <h4>Growth Strategy</h4>
-                            </div>
-                            <p class="explain-card-description">Receive personalized advice for growing your social media presence.</p>
-                        </div>
-                        <div class="explain-card" onclick="useChatTemplate('optimization')">
-                            <div class="explain-card-header">
-                                <i class="fas fa-cogs"></i>
-                                <h4>SEO Optimization</h4>
-                            </div>
-                            <p class="explain-card-description">Learn how to optimize your content for better search visibility.</p>
-                        </div>
-                    </div>
-                </div>
                 <div id="chatMessagesModal" class="chat-messages glass"></div>
             </div>
             <div class="modal-footer chat-modal-footer">
                 <div class="chat-input-container">
-                     <input type="text" id="chatInput" placeholder="Chat with AI...">
-                    <button id="voiceBtnModal" class="voice-btn">
-                        <i class="fas fa-microphone"></i>
-                    </button>
+                    <input type="text" id="chatInput" placeholder="Chat with AI...">
                     <button id="sendChatBtnModal" class="send-btn">
                         <i class="fas fa-paper-plane"></i>
                     </button>
