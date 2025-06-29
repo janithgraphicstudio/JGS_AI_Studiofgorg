@@ -967,7 +967,7 @@ input:checked + .slider::before {
     backdrop-filter: blur(20px);
     border: 1px solid var(--glass-border);
     border-radius: 12px;
-    color: var(--text-dark);
+    color: rgb(0, 110, 255);
     font-size: 14px;
     font-family: inherit;
     transition: all 0.3s ease;
@@ -1998,4 +1998,128 @@ body.light-theme ::-webkit-scrollbar-thumb {
 
 body.light-theme ::-webkit-scrollbar-thumb:hover {
     background: rgba(0, 0, 0, 0.3);
+}
+/* --- Chatbot Modal Panel Responsive & User Friendly --- */
+#aiChatModal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10000;
+    position: fixed;
+    top: 0; left: 0; width: 100vw; height: 100vh;
+    background: rgba(0,0,0,0.85);
+    backdrop-filter: blur(15px);
+    animation: modalFadeIn 0.3s;
+}
+#aiChatModal .chat-modal-content {
+    max-width: 600px;
+    width: 95vw;
+    height: 80vh;
+    min-height: 400px;
+    background: var(--glass-bg);
+    border-radius: 22px;
+    box-shadow: 0 12px 40px rgba(0,0,0,0.5);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    padding: 0;
+    position: relative;
+    animation: modalSlideIn 0.4s;
+}
+#aiChatModal .modal-header,
+#aiChatModal .modal-footer {
+    padding: 20px 30px;
+    background: transparent;
+    border: none;
+}
+#aiChatModal .modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--glass-border);
+}
+#aiChatModal .modal-footer {
+    border-top: 1px solid var(--glass-border);
+}
+#aiChatModal .chat-modal-body {
+    flex: 1;
+    overflow-y: auto;
+    padding: 0 30px 20px;
+    background: transparent;
+}
+#aiChatModal .chat-messages {
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    padding: 0;
+    max-height: 100%;
+}
+#aiChatModal .chat-input-container {
+    background: var(--glass-bg);
+    border-radius: 25px;
+    border: 1px solid var(--glass-border);
+    padding: 5px 5px 5px 20px;
+    display: flex;
+    align-items: center;
+}
+#aiChatModal input[type="text"] {
+    background: transparent;
+    border: none;
+    color: var(--text-dark);
+    font-size: 16px;
+    flex: 1;
+    padding: 15px 10px 15px 0;
+}
+#aiChatModal .send-btn {
+    background: var(--primary-gradient);
+    border-radius: 50%;
+    width: 45px;
+    height: 45px;
+    color: #fff;
+    border: none;
+    margin-left: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+}
+#aiChatModal .send-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 5px 15px rgba(102,126,234,0.4);
+}
+
+/* --- Desktop: Centered, Large Modal --- */
+@media (min-width: 769px) {
+    #aiChatModal .chat-modal-content {
+        max-width: 600px;
+        width: 95vw;
+        height: 80vh;
+        min-height: 400px;
+        margin: 0 auto;
+        border-radius: 22px;
+    }
+}
+
+/* --- Mobile: Fullscreen Modal --- */
+@media (max-width: 768px) {
+    #aiChatModal .chat-modal-content {
+        max-width: 100vw;
+        width: 100vw;
+        height: 100vh;
+        min-height: 0;
+        border-radius: 0;
+        padding: 0;
+    }
+    #aiChatModal .modal-header,
+    #aiChatModal .modal-footer {
+        padding: 15px 10px;
+    }
+    #aiChatModal .chat-modal-body {
+        padding: 0 10px 10px;
+    }
+}
+
+/* --- Make sure modal always on top --- */
+#aiChatModal {
+    z-index: 99999 !important;
 }

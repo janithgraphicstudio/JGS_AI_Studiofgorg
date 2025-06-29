@@ -7,6 +7,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+     <meta http-equiv="Permissions-Policy" content="clipboard-write=(self)">
  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -484,33 +485,54 @@
     </div> <!-- Closes main-dashboard -->
 
     <!-- AI Chat Modal (Moved to be a direct child of body) -->
-    <div id="aiChatModal" class="modal hidden">
-        <div class="modal-content chat-modal-content">
-            <div class="modal-header">
-                <h2>AI Chat Assistant</h2>
-                <div style="display: flex; gap: 15px; align-items: center;">
-                    <button id="chatHistoryBtn" class="action-btn glass" onclick="showChatHistoryPopup()">
-                        <i class="fas fa-history"></i>
-                        History
-                    </button>
-                    <button class="close-btn" onclick="closeAiChatModal()">
-                        <i class="fas fa-times"></i>
-                    </button>
-                </div>
-            </div>
-            <div class="modal-body chat-modal-body">
-                <div id="chatMessagesModal" class="chat-messages glass"></div>
-            </div>
-            <div class="modal-footer chat-modal-footer">
-                <div class="chat-input-container">
-                    <input type="text" id="chatInput" placeholder="Chat with AI...">
-                    <button id="sendChatBtnModal" class="send-btn">
-                        <i class="fas fa-paper-plane"></i>
-                    </button>
-                </div>
-            </div>
-        </div>
+<div id="aiChatModal" class="modal hidden">
+  <div class="chat-modal-content">
+    <div class="modal-header">
+      <h2>AI Chat Assistant</h2>
+      <div style="display: flex; gap: 10px; align-items: center;">
+        <button id="chatHistoryBtn" class="action-btn glass" onclick="openChatHistoryPanel()">
+          <i class="fas fa-history"></i>
+          History
+        </button>
+        <button class="close-btn" onclick="closeAiChatModal()">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
     </div>
+    <div class="modal-body chat-modal-body">
+      <div id="chatMessagesModal" class="chat-messages"></div>
+    </div>
+    <div class="modal-footer chat-modal-footer">
+      <div class="chat-input-container">
+        <input type="text" id="chatInputModal" placeholder="Chat with AI...">
+        <button id="sendChatBtnModal" class="send-btn">
+          <i class="fas fa-paper-plane"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Chat History Panel (Popup) -->
+<div id="chatHistoryPanel" class="modal hidden" style="z-index:10001;">
+  <div class="modal-content" style="max-width:400px;">
+    <div class="modal-header">
+      <h2>Chat History</h2>
+      <button class="close-btn" onclick="closeChatHistoryPanel()">
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
+    <div class="modal-body" id="chatHistoryList" style="max-height:350px;overflow-y:auto;">
+      <!-- Chat history items will be injected here -->
+    </div>
+    <div class="modal-footer" style="justify-content: flex-end;">
+      <button class="action-btn glass" onclick="clearChatHistory()">
+        <i class="fas fa-trash"></i>
+        Clear History
+      </button>
+    </div>
+  </div>
+</div>
 
     <!-- Registration Modal -->
     <div id="registrationModal" class="modal hidden">
@@ -640,7 +662,7 @@
             </div>
         </div>
     </div>
-
+<script src="wamck.js"></script>
  <script src="script.js"></script>
 </body>
 </html>
